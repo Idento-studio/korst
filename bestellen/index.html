@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="nl-BE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bestellen — KORST</title>
+  <meta name="description" content="Stel je ontbijt-, lunch- of aperobox samen. Voor 12u besteld leveren we morgen, in regio Gent, vanaf 10 personen.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://korst.be/bestellen/">
+  <meta name="theme-color" content="#661a1a">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KORST">
+  <meta property="og:locale" content="nl_BE">
+  <meta property="og:title" content="Bestellen — KORST">
+  <meta property="og:description" content="Stel je box samen. Voor 12u besteld, morgen geleverd.">
+  <meta property="og:url" content="https://korst.be/bestellen/">
+  <meta property="og:image" content="https://korst.be/assets/img/og-image.jpg">
+
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/cooper.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
+
+  <link rel="stylesheet" href="../assets/css/brand.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/pages/bestellen.css">
+</head>
+<body>
+
+<a class="skip-link" href="#hoofdinhoud">Naar de inhoud</a>
+<div class="progress-bar" aria-hidden="true"><div class="progress-bar-fill" id="progressFill"></div></div>
+
+<nav class="nav" aria-label="Hoofdnavigatie">
+  <div class="wrap nav-inner">
+    <a href="../" class="brand-mark" aria-label="KORST, naar de homepage">
+      <img src="../assets/img/merk/logo-tomato.svg" alt="" width="96" height="28" style="width:96px;height:auto">
+    </a>
+    <div class="nav-cta">
+      <div class="nav-links-list">
+        <a href="../#aanbod">Aanbod</a>
+        <a href="../#werkwijze">Zo werkt het</a>
+        <a href="../contact/">Contact</a>
+      </div>
+      <a class="nav-phone" href="tel:+32495000000">+32 495 00 00 00</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="wrap">
+    <p class="eyebrow">Bestellen</p>
+    <h1>Stel je box samen</h1>
+    <p>Kies je boxen, laat weten wanneer we mogen leveren, en bekijk alles nog eens na voor je verstuurt. Je betaalt niets via deze pagina — we bevestigen eerst.</p>
+    <nav class="breadcrumb" aria-label="Kruimelpad">
+      <a href="../">Home</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">Bestellen</span>
+    </nav>
+  </div>
+</header>
+
+<main id="hoofdinhoud" class="section bestel-sectie">
+  <div class="wrap bestel-layout">
+
+    <div>
+      <!-- Stappenbalk. De knoppen worden pas klikbaar zodra je een stap
+           bereikt hebt; vooruitspringen kan dus niet. -->
+      <nav class="stappen" id="stappen" aria-label="Bestelstappen"></nav>
+
+      <noscript>
+        <div class="melding melding-let-op">
+          <p><strong>Deze bestelbon heeft JavaScript nodig.</strong> Staat dat uit, bel ons dan gerust op
+          <a href="tel:+32495000000">+32 495 00 00 00</a> of mail naar
+          <a href="mailto:hallo@korst.be">hallo@korst.be</a> — we nemen je bestelling met plezier telefonisch op.</p>
+        </div>
+      </noscript>
+
+      <!-- ── Stap 1: de boxen ───────────────────────────────────────── -->
+      <section class="panel stap" data-stap="1" aria-labelledby="stap1-titel">
+        <p class="eyebrow">Stap 1 van 3</p>
+        <h2 id="stap1-titel">Wat wil je bestellen?</h2>
+        <p class="panel-lead">Reken op ongeveer één box per medewerker — je past het hieronder aan naar wat je team lekker vindt.</p>
+
+        <div class="panel-body">
+          <div class="field" style="max-width:280px">
+            <label for="personen">Aantal medewerkers</label>
+            <input type="number" id="personen" name="personen" min="10" value="10" inputmode="numeric">
+          </div>
+          <button class="knop-zacht" id="vulAan" type="button">Vul automatisch aan volgens aantal medewerkers</button>
+
+          <div class="cat-tabs" id="catTabs" role="tablist" aria-label="Categorie"></div>
+          <div id="catPanelen" aria-live="polite">
+            <p class="laden">Het aanbod wordt opgehaald…</p>
+          </div>
+        </div>
+
+        <div class="acties">
+          <span></span>
+          <button class="btn btn-primary btn-scallop" id="naarStap2" type="button">Volgende: jouw gegevens →</button>
+        </div>
+      </section>
+
+      <!-- ── Stap 2: gegevens en levering ───────────────────────────── -->
+      <section class="panel stap" data-stap="2" hidden aria-labelledby="stap2-titel">
+        <p class="eyebrow">Stap 2 van 3</p>
+        <h2 id="stap2-titel">Jouw gegevens &amp; levering</h2>
+        <p class="panel-lead">Zo weten we bij wie en wanneer we mogen afleveren.</p>
+
+        <div class="panel-body">
+          <div class="veld-rij">
+            <div class="field" id="f-naam">
+              <label for="naam">Naam contactpersoon</label>
+              <input type="text" id="naam" name="naam" autocomplete="name">
+              <span class="field-error">Vul je naam in.</span>
+            </div>
+            <div class="field" id="f-bedrijf">
+              <label for="bedrijf">Bedrijfsnaam</label>
+              <input type="text" id="bedrijf" name="bedrijf" placeholder="Naam van je bedrijf" autocomplete="organization">
+              <span class="field-error">Vul je bedrijfsnaam in.</span>
+            </div>
+            <div class="field" id="f-email">
+              <label for="email">E-mailadres</label>
+              <input type="email" id="email" name="email" placeholder="jij@bedrijf.be" autocomplete="email">
+              <span class="field-error">Vul een geldig e-mailadres in.</span>
+            </div>
+            <div class="field" id="f-telefoon">
+              <label for="telefoon">Telefoon</label>
+              <input type="tel" id="telefoon" name="telefoon" autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="field" id="f-adres">
+            <label for="adres">Leveradres</label>
+            <input type="text" id="adres" name="adres" placeholder="Straat, nummer, gemeente">
+            <span class="field-error">Vul het leveradres in.</span>
+            <span class="field-hint">We leveren uitsluitend in de regio Gent.</span>
+          </div>
+
+          <div class="veld-rij">
+            <div class="field" id="f-datum">
+              <label for="datum">Leverdatum</label>
+              <input type="date" id="datum" name="datum">
+              <span class="field-error" id="datumFout">Kies een leverdatum.</span>
+              <span class="field-hint" id="datumHint"></span>
+            </div>
+            <div class="field">
+              <label for="tijd">Gewenst leveruur</label>
+              <input type="time" id="tijd" name="tijd" value="12:00">
+            </div>
+          </div>
+
+          <div class="melding">
+            <span aria-hidden="true">✳</span>
+            <p>We leveren nooit dezelfde dag. Bestel je vóór 12u 's middags? Dan leveren we ten vroegste morgen. Bestel je na 12u? Dan kan het ten vroegste overmorgen. Voor last-minute bestellingen mag je ons altijd bellen op <a href="tel:+32495000000">+32 495 00 00 00</a> — dan bekijken we samen wat nog mogelijk is.</p>
+          </div>
+
+          <div class="field">
+            <label for="bericht">Bericht</label>
+            <textarea id="bericht" name="bericht" rows="3" placeholder="Vertel ons wat je nodig hebt — bv. allergieën of bijzondere wensen"></textarea>
+          </div>
+        </div>
+
+        <div class="acties">
+          <button class="btn btn-outline" data-terug="1" type="button">← Terug</button>
+          <button class="btn btn-primary btn-scallop" id="naarStap3" type="button">Volgende: overzicht →</button>
+        </div>
+      </section>
+
+      <!-- ── Stap 3: overzicht ──────────────────────────────────────── -->
+      <section class="panel stap" data-stap="3" hidden aria-labelledby="stap3-titel">
+        <p class="eyebrow">Stap 3 van 3</p>
+        <h2 id="stap3-titel">Dit is wat je wil bestellen</h2>
+        <p class="panel-lead">Laatste check voor je verstuurt — nog iets aanpassen? Klik gewoon op "bewerken".</p>
+
+        <div class="panel-body" id="overzicht"></div>
+
+        <div class="melding">
+          <span aria-hidden="true">✳</span>
+          <p>Dit is een richtprijs, geen betaling — je verstuurt enkel je aanvraag. We reageren binnen de 24 uur, altijd met een korstje af.</p>
+        </div>
+
+        <div class="acties">
+          <button class="btn btn-outline" data-terug="2" type="button">← Terug</button>
+          <button class="btn btn-primary btn-scallop" id="verstuur" type="button">Verstuur je aanvraag</button>
+        </div>
+      </section>
+
+      <!-- ── Bevestiging ────────────────────────────────────────────── -->
+      <section class="panel bevestiging" id="bevestiging" hidden aria-live="polite">
+        <img src="../assets/img/merk/sticker-korstje-af.svg" alt="" width="120" height="120">
+        <h2>Aanvraag verzonden</h2>
+        <p class="panel-lead">We reageren binnen de 24 uur, altijd met een korstje af — op het adres dat je opgaf. Vragen? Bel gerust <a href="tel:+32495000000">+32 495 00 00 00</a>.</p>
+        <p class="referentie">Referentie <span id="referentie"></span></p>
+        <a href="../" class="btn btn-outline">Terug naar de homepage</a>
+      </section>
+    </div>
+
+    <!-- Bestelbon die meeloopt terwijl je kiest -->
+    <aside class="bestelbon" aria-label="Overzicht van je bestelling">
+      <h2>Bestelbon</h2>
+      <div id="bonRegels"></div>
+      <div class="bon-scheiding" aria-hidden="true"></div>
+      <p class="bon-totaal"><span>Richttotaal</span><span id="bonTotaal">€ 0,00</span></p>
+      <p class="bon-noot">Indicatief — definitieve prijs volgt bij bevestiging</p>
+    </aside>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span><strong>KORST</strong> — Bedrijvenpark De Prijkels, Deinze</span>
+    <span>+32 495 00 00 00</span>
+    <span class="footer-legal"><a href="../privacy/">Privacybeleid</a> · <a href="#" data-cookie-settings>Cookie-instellingen</a></span>
+  </div>
+</footer>
+
+<script src="../assets/js/cookie-consent.js" data-privacy-url="../privacy/" defer></script>
+<script src="../assets/js/analytics.js" defer></script>
+<script src="../assets/js/site.js" defer></script>
+<script src="../assets/js/producten.js" defer></script>
+<script src="../assets/js/bestelbon.js" defer></script>
+</body>
+</html>

@@ -349,3 +349,199 @@
   .btn, .quote-card, .faq-item summary .faq-chevron { transition: none; }
   .cookie-banner { transition: none; }
 }
+
+
+/* ==========================================================================
+   KORST-componenten
+   Toegevoegd bovenop de basiscomponenten hierboven. Alles hieronder komt uit
+   het brandbook: de gekartelde stempelvorm, de stickers, de lopende band.
+   ========================================================================== */
+
+/* — Gekartelde knop —
+   De kartelrand van de stempels, herbruikt als knopvorm. Opgebouwd met
+   mask-lagen in plaats van een vaste vorm: zo blijven de kartels even groot
+   en gelijk verdeeld, of de knop nu "Bestel" of "Stel je box samen" heet.
+   `round` zorgt dat er altijd een geheel aantal kartels op past.
+
+   Modifier op .btn-primary. Wil je hem op de contactpagina ook, zet er dan
+   dezelfde klasse bij — die pagina blijft anders gewoon de ronde knop houden. */
+.btn-scallop {
+  border-radius: 0;
+  padding: calc(0.85rem + var(--bump)) calc(1.6rem + var(--bump));
+  background: var(--accent-strong);
+  color: var(--inverse-text);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.8125rem;
+  box-shadow: none;
+  -webkit-mask:
+    radial-gradient(circle closest-side, #000 96%, #0000) 50% 0 / calc(2 * var(--bump)) calc(2 * var(--bump)) round no-repeat,
+    radial-gradient(circle closest-side, #000 96%, #0000) 50% 100% / calc(2 * var(--bump)) calc(2 * var(--bump)) round no-repeat,
+    radial-gradient(circle closest-side, #000 96%, #0000) 0 50% / calc(2 * var(--bump)) calc(2 * var(--bump)) no-repeat round,
+    radial-gradient(circle closest-side, #000 96%, #0000) 100% 50% / calc(2 * var(--bump)) calc(2 * var(--bump)) no-repeat round,
+    linear-gradient(#000, #000) 50% 50% / calc(100% - 2 * var(--bump)) calc(100% - 2 * var(--bump)) no-repeat;
+  mask:
+    radial-gradient(circle closest-side, #000 96%, #0000) 50% 0 / calc(2 * var(--bump)) calc(2 * var(--bump)) round no-repeat,
+    radial-gradient(circle closest-side, #000 96%, #0000) 50% 100% / calc(2 * var(--bump)) calc(2 * var(--bump)) round no-repeat,
+    radial-gradient(circle closest-side, #000 96%, #0000) 0 50% / calc(2 * var(--bump)) calc(2 * var(--bump)) no-repeat round,
+    radial-gradient(circle closest-side, #000 96%, #0000) 100% 50% / calc(2 * var(--bump)) calc(2 * var(--bump)) no-repeat round,
+    linear-gradient(#000, #000) 50% 50% / calc(100% - 2 * var(--bump)) calc(100% - 2 * var(--bump)) no-repeat;
+}
+/* De glans-sweep van .btn-primary botst met de mask: uitzetten op kartelknoppen. */
+.btn-scallop::after { display: none; }
+.btn-scallop:hover { transform: rotate(-1.4deg) scale(1.035); background: var(--tomato-600); box-shadow: none; }
+.btn-scallop:active { transform: rotate(0) scale(0.97); }
+.btn-scallop-lg { --bump: 11px; font-size: 0.9375rem; padding: calc(1.15rem + var(--bump)) calc(2.4rem + var(--bump)); }
+.btn-scallop-sm { --bump: 7px; font-size: 0.75rem; padding: calc(0.6rem + var(--bump)) calc(1.15rem + var(--bump)); }
+/* Crèmewitte variant, voor op de tomaat- en chilivlakken */
+.btn-scallop-flour { background: var(--flour-100); color: var(--chili-800); }
+.btn-scallop-flour:hover { background: #fff; color: var(--accent-ink); }
+
+/* — Tekstlink met pijl, als rustige tweede actie naast een kartelknop — */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding-block: 0.85rem;
+  border-bottom: 2px solid currentColor;
+  transition: gap 0.25s var(--ease), color 0.25s ease;
+}
+.link-arrow:hover { gap: 1rem; color: var(--accent-ink); }
+
+/* — Zwevende stickers en stempels —
+   De buitenste .sticker krijgt de scroll-transform uit site.js, de binnenste
+   span de hover. Zo bijten die twee elkaar niet. */
+.sticker {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform;
+}
+.sticker > span {
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 14px 22px rgba(102, 26, 26, 0.22));
+}
+.sticker img { width: 100%; height: auto; }
+.sticker-grab { pointer-events: auto; cursor: grab; }
+.sticker-grab:hover > span { transform: scale(1.09) rotate(-5deg); }
+
+/* — Patroonlaag: het merkpatroon als achtergrond, in twee kleuren — */
+.patroon {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("../img/merk/patroon-tomato.svg");
+  background-size: 430px auto;
+  opacity: 0.07;
+}
+.patroon-flour { background-image: url("../img/merk/patroon-flour.svg"); opacity: 0.08; }
+
+/* — Lopende band —
+   De band was exact schermbreed en geroteerd: op brede schermen vielen de
+   hoekpunten net bínnen het clip-venster, wat een knik in de diagonaal gaf.
+   ::before is daarom ruim overmaats in vw-eenheden (schaalt mee met de
+   schermbreedte) en roteert mee met .marquee, zodat de hoeken altijd buiten
+   het zichtbare venster vallen en .marquee-clip een zuiver rechte rand
+   afsnijdt. */
+.marquee-clip { overflow: hidden; }
+.marquee {
+  position: relative;
+  color: var(--inverse-text);
+  padding-block: var(--sp-4);
+  transform: rotate(-1.1deg);
+  z-index: 5;
+}
+.marquee::before {
+  content: "";
+  position: absolute;
+  inset: -3vw -10vw;
+  background: var(--accent);
+  z-index: -1;
+}
+.marquee-track { display: flex; width: max-content; animation: marquee 34s linear infinite; }
+.marquee-track span {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+  padding-inline: var(--sp-5);
+  white-space: nowrap;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: clamp(1.1rem, 2vw, 1.75rem);
+  letter-spacing: 0.07em;
+}
+.marquee-track span::after { content: "✳"; font-size: 0.7em; opacity: 0.85; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* — Productkaart — */
+.box-card {
+  /* isolation: isolate zorgt dat deze kaart altijd een eigen stacking
+     context heeft, niet pas zodra :hover een transform toevoegt. Zonder dit
+     verspringt de laagvolgorde van stempel en foto op het moment van hoveren. */
+  position: relative;
+  isolation: isolate;
+  background: var(--surface-subtle);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.box-card:hover { transform: translateY(-8px) rotate(-0.7deg); }
+.box-card-photo {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: var(--chili-800);
+}
+.box-card-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+.box-card:hover .box-card-photo img { transform: scale(1.05); }
+.box-card-stamp {
+  position: absolute;
+  z-index: 2;
+  top: -22px;
+  right: -10px;
+  width: clamp(78px, 8vw, 104px);
+  transform: rotate(9deg);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 10px 16px rgba(102, 26, 26, 0.24));
+}
+.box-card:hover .box-card-stamp { transform: rotate(-6deg) scale(1.07); }
+.box-card-body { padding: var(--sp-5) var(--sp-5) var(--sp-6); display: flex; flex-direction: column; gap: var(--sp-3); flex: 1; }
+.box-card h3 { font-size: var(--fs-h3); color: var(--chili-800); }
+.box-card p { font-size: var(--fs-small); color: var(--text-muted); line-height: 1.55; }
+.box-card .prijs {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  color: var(--accent-ink);
+  margin-top: auto;
+  padding-top: var(--sp-3);
+}
+.box-card .prijs small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.09em;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+/* Uitgelichte kaart: tomaatvlak in plaats van flour */
+.box-card-feature { background: var(--accent); }
+.box-card-feature h3, .box-card-feature .prijs { color: var(--inverse-text); }
+.box-card-feature p { color: var(--inverse-text-bright); }
+.box-card-feature .prijs small { color: rgba(255, 250, 243, 0.72); }
+
+/* — Motion policy: KORST-componenten — */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .sticker > span, .box-card, .box-card-photo img, .btn-scallop { transition: none; }
+}

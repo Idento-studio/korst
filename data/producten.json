@@ -1,0 +1,66 @@
+{
+  "_opmerking": "Reservelijst. Wordt enkel getoond als Sanity onbereikbaar is of de dataset nog leeg staat. Werk deze bij met een export uit Sanity wanneer het aanbod grondig wijzigt.",
+  "bijgewerkt": "2026-09-14",
+  "producten": [
+    {
+      "id": "product-morning-reset",
+      "titel": "Morning Reset",
+      "categorie": "ontbijt",
+      "beschrijving": "Croissant, vers fruit, notenmix, yoghurt en fijne charcuterie. De zachte landing van elke vergadering om 8u.",
+      "prijs": 8.5,
+      "eenheid": "per persoon",
+      "allergenen": "Bevat gluten, lactose, noten en varkensvlees (ham, salami).",
+      "uitgelicht": true,
+      "foto": "assets/img/box-ontbijt.jpg",
+      "alt": "KORST ontbijtbox Morning Reset met croissant, fruit en beleg"
+    },
+    {
+      "id": "product-bulgur-salade",
+      "titel": "Bulgur Salade",
+      "categorie": "lunch",
+      "beschrijving": "Een frisse, volwaardige lunch boordevol granen, groenten en kruiden.",
+      "prijs": 11.9,
+      "eenheid": "per persoon",
+      "allergenen": "Bevat gluten (bulgur). Vegetarisch.",
+      "uitgelicht": false,
+      "foto": "assets/img/box-lunch.jpg",
+      "alt": "Frisse lunchsalade met granen en groenten"
+    },
+    {
+      "id": "product-italian-pearl-salad",
+      "titel": "Italian Pearl Salad",
+      "categorie": "lunch",
+      "beschrijving": "Parelcouscous, zongedroogde tomaat, mozzarella en basilicum.",
+      "prijs": 12.5,
+      "eenheid": "per persoon",
+      "allergenen": "Bevat gluten (couscous) en lactose (mozzarella).",
+      "uitgelicht": true,
+      "foto": "assets/img/box-lunch.jpg",
+      "alt": "Belegde focaccia met mozzarella, tomaat en pesto"
+    },
+    {
+      "id": "product-borrelplank-compleet",
+      "titel": "Borrelplank Compleet",
+      "categorie": "apero",
+      "beschrijving": "Kaas, charcuterie, dips en krokante bites — gemaakt om te delen.",
+      "prijs": 9.9,
+      "eenheid": "per persoon",
+      "allergenen": "Bevat lactose, gluten en varkensvlees (charcuterie).",
+      "uitgelicht": true,
+      "foto": "assets/img/box-apero.jpg",
+      "alt": "Aperoplank met kaas, charcuterie, fruit en dips"
+    },
+    {
+      "id": "product-cocktailhapjes",
+      "titel": "Cocktailhapjes",
+      "categorie": "apero",
+      "beschrijving": "Een mix van warme en koude hapjes voor elke afterwork of receptie.",
+      "prijs": 2.6,
+      "eenheid": "per stuk",
+      "allergenen": "Kan sporen bevatten van gluten, ei, lactose en schaaldieren.",
+      "uitgelicht": false,
+      "foto": "assets/img/box-apero.jpg",
+      "alt": "Warme en koude hapjes voor apero"
+    }
+  ]
+}

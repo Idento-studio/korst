@@ -3,121 +3,155 @@
    Enige plek waar kleuren, fonts, spacing en radii gedefinieerd worden.
    Wijzig hier en de hele site volgt. Bevat GEEN component- of paginastijlen.
 
-   ── PER KLANT AAN TE PASSEN ──────────────────────────────────────────────
-   Het kleurenpalet hieronder wordt per klant aangepast op basis van
-   sectie 6 van PROJECT-BRIEF.md (huisstijl: kleuren, logo, fonts, tone of
-   voice). De tokens die er nu staan zijn een NEUTRAAL STARTPUNT — een
-   warm, aards palet dat op zichzelf voor niemand specifiek is. Laat ze
-   staan tot je de huisstijl van de klant hebt.
+   ── INGEVULD VOOR KORST ──────────────────────────────────────────────────
+   Palet uit het KORST-brandbook (Studio Sissi):
+     Tomato Red   #E8462C   accentkleur, knoppen, illustraties
+     Dark Chili   #661A1A   tekst en donkere vlakken
+     Soft Flour   #FFF1E1   de warme ondergrond van de hele site
 
-   Werkwijze:
-   1. Vervang de hex-waarden in "Palette" door die van de klant. Houd de
-      tokennamen (--moss-800, --gold-500...) ongewijzigd, of hernoem ze
-      overal consequent — ze worden door de andere CSS-bestanden gebruikt.
-   2. De semantische tokens eronder (--bg, --text, --accent, --brand...)
-      wijzen naar het palet. Meestal hoef je daar niets te veranderen:
-      pas het palet aan en de hele site volgt.
-   3. Fonts: --font-display en --font-body. Wijzig je die, pas dan ook de
-      Google Fonts-link in de head van elke HTML-pagina aan.
-   4. Controleer het contrast na het wisselen (minimaal 4.5:1 voor
-      lopende tekst) — een donker merkkleur op een lichte achtergrond
-      gaat meestal goed, de omgekeerde combinatie zelden.
+   Het brandbook geeft drie kleuren. Een site heeft er meer nodig: tinten om
+   vlakken van elkaar te scheiden, en statuskleuren voor formulierfeedback.
+   Die zijn hieronder afgeleid van de drie merkkleuren, met twee uitzonderingen
+   die als "functioneel" gemarkeerd staan — olijf voor geslaagd en een diepere
+   roest voor fouten. Rood kan hier niet als foutkleur: dát is het merk zelf,
+   dus een fout zou niet opvallen.
+
+   Typografie volgens het brandbook:
+     Cooper LT BT   titels en taglines, ALTIJD IN KAPITALEN
+     Archivo        broodtekst, tussentitels, alle informatieve tekst
+   Cooper staat niet op Google Fonts en wordt hieronder lokaal geladen.
    ========================================================================== */
+
+/* Cooper LT BT — gesubset naar de tekens die we gebruiken (15 kB i.p.v. 58 kB).
+   font-display:swap toont eerst de fallback-serif, zodat tekst nooit onzichtbaar
+   is terwijl het font laadt. */
+@font-face {
+  font-family: "Cooper KORST";
+  src: url("../fonts/cooper.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cooper KORST";
+  src: url("../fonts/cooper-italic.woff2") format("woff2");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
 
 :root {
   color-scheme: light;
 
   /* — Palette — */
-  --moss-950: #1c2419;
-  --moss-900: #242f1f;
-  --moss-800: #33422e;
-  --moss-700: #445642;
-  --gold-600: #a8721f;
-  --gold-500: #c98a34;
-  --gold-400: #dba456;
-  --wine-700: #5f2424;
-  --wine-600: #7a2e2e;
-  --linen-50:  #faf8f2;
-  --linen-100: #f3efe3;
-  --linen-200: #eae3d3;
-  --linen-300: #ded4bd;
-  --sage-400: #a9af9a;
-  --sage-300: #c2c7b3;
-  --ink-900: #1a1712;
-  --ink-800: #221f1a;
-  --ink-600: #4a453c;
-  --ink-400: #79746a;
+  /* Chili: het diepe merkrood, voor tekst en donkere vlakken */
+  --chili-950: #3b0d0d;
+  --chili-900: #4a1010;
+  --chili-800: #661a1a;
+  --chili-700: #7a2a24;
+  /* Tomato: het accent */
+  --tomato-600: #c9351d;
+  --tomato-500: #e8462c;
+  --tomato-400: #f06a52;
+  /* Flour: de ondergrond */
+  --flour-50:  #fffaf3;
+  --flour-100: #fff1e1;
+  --flour-200: #ffe7ce;
+  --flour-300: #f0d5b9;
+  /* Zalm: leesbare, zachte tekst op de chili-vlakken */
+  --salmon-300: #f3b9a8;
+  --salmon-400: #d9a08e;
+  /* Functioneel, niet uit het brandbook: statuskleuren */
+  --olive-600: #5f6d42;
+  --olive-500: #6b7a4a;
+  --rust-700: #8a2a18;
+  --rust-600: #a3321d;
+  /* Inkt: tekstkleuren, afgeleid van chili */
+  --ink-900: #3b0d0d;
+  --ink-800: #661a1a;
+  --ink-600: #8a5a4a;
+  --ink-400: #a98a7c;
 
-  --bg: var(--linen-100);
-  --surface: var(--linen-50);
-  --surface-subtle: var(--linen-200);
+  --bg: var(--flour-100);
+  --surface: var(--flour-50);
+  --surface-subtle: var(--flour-200);
   --surface-raised: #ffffff;
   --text: var(--ink-800);
   --text-muted: var(--ink-600);
-  --border: var(--linen-300);
-  --accent: var(--gold-500);
-  /* Iets dieper dan --gold-600: op de lichte achtergronden (linen/wit) waar
-     dit voor kleine tekst en links gebruikt wordt, haalt --gold-600 zelf maar
-     3.6:1 contrast — net onder de WCAG AA-norm (4.5:1) voor gewone tekst.
-     Deze tint haalt overal ≥4.5:1, zonder merkbaar minder "goud" te ogen. */
-  --accent-ink: #8f611a;
-  --brand: var(--moss-800);
+  --border: var(--flour-300);
+  --accent: var(--tomato-500);
+  /* Tomato zelf haalt op de lichte flour-achtergrond maar 3.5:1 — net onder
+     de WCAG AA-norm (4.5:1) voor lopende tekst. Deze diepere tint haalt wél
+     4.5:1 en blijft onmiskenbaar dezelfde accentkleur. Gebruik hem voor
+     kleine tekst en links; het vlakke --accent blijft voor knopvlakken,
+     waar de tekst er wit bovenop staat. */
+  --accent-ink: #b02d16;
+  /* Knopvlakken met crèmewit opschrift. Het echte Tomato Red haalt met
+     --inverse-text erop maar 3.8:1; deze fractie diepere tint haalt 4.6:1 en
+     is naast het origineel niet te onderscheiden. --accent zelf blijft de
+     zuivere merkkleur, voor illustraties, de lopende band en grote vlakken —
+     daar geldt de soepelere 3:1-norm. */
+  --accent-strong: #d13c20;
+  --brand: var(--chili-800);
 
   /* — Rollen op een donkere ondergrond (header/footer/page-header/info-card) —
      Hieronder verandert normaal NIETS per klant: je past enkel het palet
      hierboven aan, en deze rollen volgen automatisch mee. — */
-  --inverse-bg: var(--moss-900);
-  --inverse-bg-strong: var(--moss-950);
-  --inverse-text: var(--linen-50);
-  --inverse-text-emphasis: var(--linen-100);
-  --inverse-text-muted: var(--sage-300);
-  --inverse-text-soft: var(--sage-400);
-  --inverse-text-dim: rgba(250, 248, 242, 0.6);
-  --inverse-text-bright: rgba(250, 248, 242, 0.82);
-  --accent-inverse: var(--gold-400);
+  --inverse-bg: var(--chili-800);
+  --inverse-bg-strong: var(--chili-950);
+  --inverse-text: var(--flour-50);
+  --inverse-text-emphasis: var(--flour-100);
+  --inverse-text-muted: var(--salmon-300);
+  --inverse-text-soft: var(--salmon-400);
+  --inverse-text-dim: rgba(255, 250, 243, 0.62);
+  --inverse-text-bright: rgba(255, 250, 243, 0.86);
+  --accent-inverse: var(--tomato-400);
 
   /* — Extra tekst-/decoratierol op een lichte ondergrond — */
   --text-strong: var(--ink-900);
-  --muted-accent: var(--sage-400);
+  --muted-accent: var(--ink-400);
 
   /* — Status (formulier- en meldingsfeedback) — */
-  --success: var(--moss-700);
-  --success-strong: var(--moss-900);
-  --success-veil: rgba(51, 66, 46, 0.08);
-  --danger: var(--wine-600);
-  --danger-strong: var(--wine-700);
-  --danger-veil: rgba(122, 46, 46, 0.07);
-  --danger-veil-soft: rgba(122, 46, 46, 0.05);
-  --danger-ring: rgba(122, 46, 46, 0.35);
+  /* --success is tekstkleur: daarom de diepere olijf (5.0:1 op flour).
+     De lichtere tint blijft voor vlakken en randjes. */
+  --success: var(--olive-600);
+  --success-strong: var(--olive-600);
+  --success-fill: var(--olive-500);
+  --success-veil: rgba(107, 122, 74, 0.1);
+  --danger: var(--rust-600);
+  --danger-strong: var(--rust-700);
+  --danger-veil: rgba(163, 50, 29, 0.08);
+  --danger-veil-soft: rgba(163, 50, 29, 0.05);
+  --danger-ring: rgba(163, 50, 29, 0.35);
 
   /* — Doorschijnende laagjes op de --inverse-bg (nav-blur, randjes, hover) — */
-  --inverse-veil-nav: rgba(250, 248, 242, 0.78);
-  --inverse-border-soft: rgba(250, 248, 242, 0.4);
-  --inverse-underline: rgba(250, 248, 242, 0.35);
-  --inverse-hover: rgba(250, 248, 242, 0.1);
-  --inverse-hairline: rgba(250, 248, 242, 0.12);
-  --hairline: rgba(30, 27, 20, 0.08);
+  --inverse-veil-nav: rgba(255, 241, 225, 0.82);
+  --inverse-border-soft: rgba(255, 250, 243, 0.42);
+  --inverse-underline: rgba(255, 250, 243, 0.35);
+  --inverse-hover: rgba(255, 250, 243, 0.12);
+  --inverse-hairline: rgba(255, 250, 243, 0.14);
+  --hairline: rgba(102, 26, 26, 0.12);
 
   /* — Decoratieve gloed/schaduw rond de accentkleur (CTA-knop, hero) — */
-  --accent-veil: rgba(201, 138, 52, 0.28);
-  --accent-veil-strong: rgba(201, 138, 52, 0.5);
-  --accent-shadow: rgba(169, 114, 31, 0.55);
-  --accent-shadow-strong: rgba(169, 114, 31, 0.6);
-  --accent-ring: rgba(169, 114, 31, 0.35);
-  --brand-veil: rgba(68, 86, 66, 0.55);
-  --sheen: rgba(255, 255, 255, 0.6);
+  --accent-veil: rgba(232, 70, 44, 0.26);
+  --accent-veil-strong: rgba(232, 70, 44, 0.45);
+  --accent-shadow: rgba(201, 53, 29, 0.5);
+  --accent-shadow-strong: rgba(201, 53, 29, 0.58);
+  --accent-ring: rgba(232, 70, 44, 0.35);
+  --brand-veil: rgba(102, 26, 26, 0.55);
+  --sheen: rgba(255, 255, 255, 0.55);
 
   /* — Type scale — */
-  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
-  --font-body: "Work Sans", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Cooper KORST", "Iowan Old Style", Georgia, serif;
+  --font-body: "Archivo", "Segoe UI", system-ui, sans-serif;
 
-  --fs-eyebrow: 0.8125rem;
+  --fs-eyebrow: 0.75rem;
   --fs-small: 0.9375rem;
   --fs-body: 1.0625rem;
-  --fs-lead: 1.25rem;
-  --fs-h3: clamp(1.375rem, 1.1rem + 1.1vw, 1.75rem);
-  --fs-h2: clamp(2rem, 1.5rem + 2.2vw, 3rem);
-  --fs-h1: clamp(2.75rem, 1.9rem + 3.8vw, 4.75rem);
+  --fs-lead: 1.1875rem;
+  --fs-h3: clamp(1.3rem, 1.05rem + 1vw, 1.65rem);
+  --fs-h2: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
+  --fs-h1: clamp(2.5rem, 1.6rem + 4vw, 4.75rem);
 
   /* — Spacing scale — */
   --sp-1: 0.25rem;
@@ -133,15 +167,21 @@
 
   --radius-sm: 10px;
   --radius-md: 18px;
-  --radius-lg: 28px;
-  --shadow-soft: 0 20px 50px -25px rgba(26, 23, 18, 0.35);
-  --shadow-lift: 0 28px 60px -20px rgba(26, 23, 18, 0.4);
+  --radius-lg: 26px;
+  --shadow-soft: 0 20px 50px -25px rgba(102, 26, 26, 0.4);
+  --shadow-lift: 0 28px 60px -20px rgba(102, 26, 26, 0.45);
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* — Merkspecifiek: de kartelrand van de stempels, herbruikt op knoppen — */
+  --bump: 9px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 html {
   scroll-behavior: smooth;
+  /* De zwevende stickers steken bewust buiten de secties; clip houdt ze
+     binnen beeld zonder position:sticky te breken (dat doet overflow:hidden wel). */
+  overflow-x: clip;
 }
 body {
   margin: 0;
@@ -154,12 +194,17 @@ body {
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
+/* Cooper wordt volgens het brandbook altijd in kapitalen gezet. Dat staat
+   hier op de basisregel, zodat elke titel op de site het vanzelf volgt. */
 h1, h2, h3 {
   font-family: var(--font-display);
   color: var(--ink-900);
   margin: 0;
   text-wrap: balance;
-  font-weight: 600;
+  font-weight: 300;
+  text-transform: uppercase;
+  line-height: 1.02;
+  letter-spacing: 0.005em;
 }
 p { margin: 0; }
 ul { margin: 0; padding: 0; list-style: none; }

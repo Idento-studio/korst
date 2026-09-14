@@ -55,9 +55,9 @@
   var heroImg = heroPhoto ? heroPhoto.querySelector('img') : null;
   var stickyBar = document.getElementById('stickyBar');
   // Referentiepunt voor de nudge: die schuift binnen zodra de bezoeker
-    // voorbij deze sectie is. Hernoem je #diensten in de HTML, pas dit
+    // voorbij deze sectie is. Hernoem je #aanbod in de HTML, pas dit
     // dan mee aan.
-    var nudgeAnchorEl = document.getElementById('diensten');
+    var nudgeAnchorEl = document.getElementById('aanbod');
   var nudgeEl = document.getElementById('nudge');
   var nudgeShown = false;
   var nudgeDismissed = false;
@@ -102,4 +102,44 @@
       nudgeEl.classList.remove('is-visible');
     });
   }
+  // — Lopende band: de woorden twee keer uitschrijven zodat de lus naadloos is —
+  var marquee = document.getElementById('marquee');
+  if (marquee) {
+    var woorden = ['Ontbijt', 'Lunch', 'Apero', 'Met een korstje af', 'Dagvers op kantoor', 'Voor bedrijven met smaak'];
+    var reeks = woorden.map(function (w) { return '<span>' + w + '</span>'; }).join('');
+    marquee.innerHTML = reeks + reeks + reeks + reeks;
+  }
+
+  // — Zwevende stickers en stempels —
+  // Elke sticker beweegt ten opzichte van de sectie waarin hij staat, niet
+  // ten opzichte van de hele pagina. Zo blijft de verplaatsing begrensd en
+  // drijft er niets weg op een lange pagina.
+  var stickers = [].slice.call(document.querySelectorAll('.sticker'));
+  stickers.forEach(function (el) {
+    el.__sectie = el.closest('section') || el.parentElement;
+    el.__tilt = parseFloat(el.getAttribute('data-tilt') || 0);
+    el.__drift = parseFloat(el.getAttribute('data-drift') || 0);
+    el.__spin = parseFloat(el.getAttribute('data-spin') || 0);
+    el.style.transform = 'rotate(' + el.__tilt + 'deg)';
+  });
+
+  function verplaatsStickers() {
+    if (reducedMotion || !stickers.length) return;
+    var vh = window.innerHeight;
+    stickers.forEach(function (el) {
+      var r = el.__sectie.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      // 0 = sectie komt net in beeld, 1 = sectie verlaat het beeld
+      var voortgang = (vh - r.top) / (vh + r.height);
+      var d = (voortgang - 0.5) * 2;
+      el.style.transform =
+        'translate3d(0,' + (d * el.__drift).toFixed(1) + 'px,0) rotate(' +
+        (el.__tilt + d * el.__spin).toFixed(2) + 'deg)';
+    });
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(function () { verplaatsStickers(); ticking = false; }); }
+  }, { passive: true });
+  window.addEventListener('resize', verplaatsStickers);
+  verplaatsStickers();
 })();

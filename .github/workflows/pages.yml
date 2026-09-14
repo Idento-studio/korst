@@ -45,6 +45,9 @@ jobs:
       - name: Interne documenten uit de publicatie halen
         run: rm -f ./*.md
 
+      - name: Studio uit de publicatie halen
+        run: rm -rf ./studio
+
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:

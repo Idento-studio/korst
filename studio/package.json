@@ -1,0 +1,27 @@
+{
+  "name": "korst-studio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Productbeheer voor KORST",
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "seed": "node scripts/seed.mjs"
+  },
+  "dependencies": {
+    "@sanity/icons": "^3.7.6",
+    "@sanity/vision": "^6.13.2",
+    "react": "^19.2.2",
+    "react-dom": "^19.2.2",
+    "sanity": "^6.13.2",
+    "styled-components": "^6.1.15"
+  },
+  "devDependencies": {
+    "@sanity/client": "^8.6.1",
+    "@types/node": "^22.20.2",
+    "typescript": "^5.9.2"
+  }
+}

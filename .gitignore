@@ -14,3 +14,13 @@ PROJECT-BRIEF.md
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# De Sanity Studio in studio/ is een Node-project. De map heeft een eigen
+# .gitignore, maar die is een verborgen bestand: sleep je de map via Windows
+# Verkenner, dan reist hij makkelijk niet mee. Vandaar hier nog eens, zodat
+# node_modules (tienduizenden bestanden) en je schrijftoken nooit in git
+# belanden.
+studio/node_modules/
+studio/dist/
+studio/.sanity/
+studio/.env
