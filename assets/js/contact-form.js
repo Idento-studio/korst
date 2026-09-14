@@ -24,7 +24,7 @@
   'use strict';
 
   var ENDPOINT = '';
-  var MAIL_TO = '[EMAIL]';
+  var MAIL_TO = 'hallo@korst.be';
 
   var forms = document.querySelectorAll('[data-ajax-form]');
   if (!forms.length) return;
@@ -182,7 +182,7 @@
       }).catch(function () {
         setStatus('error',
           '<strong>Het versturen lukte niet.</strong> Probeer het straks opnieuw, of bereik ons ' +
-          'rechtstreeks op <a href="tel:[TELEFOON-E164]">[TELEFOON]</a> of ' +
+          'rechtstreeks op <a href="tel:+32495000000">+32 495 00 00 00</a> of ' +
           '<a href="mailto:' + MAIL_TO + '">' + MAIL_TO + '</a>.');
       }).then(function () {
         busy(false);
