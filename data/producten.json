@@ -10,7 +10,6 @@
       "prijs": 8.5,
       "eenheid": "per persoon",
       "allergenen": "Bevat gluten, lactose, noten en varkensvlees (ham, salami).",
-      "uitgelicht": true,
       "foto": "assets/img/box-ontbijt.jpg",
       "alt": "KORST ontbijtbox Morning Reset met croissant, fruit en beleg"
     },
@@ -22,7 +21,6 @@
       "prijs": 11.9,
       "eenheid": "per persoon",
       "allergenen": "Bevat gluten (bulgur). Vegetarisch.",
-      "uitgelicht": false,
       "foto": "assets/img/box-lunch.jpg",
       "alt": "Frisse lunchsalade met granen en groenten"
     },
@@ -34,7 +32,6 @@
       "prijs": 12.5,
       "eenheid": "per persoon",
       "allergenen": "Bevat gluten (couscous) en lactose (mozzarella).",
-      "uitgelicht": true,
       "foto": "assets/img/box-lunch.jpg",
       "alt": "Belegde focaccia met mozzarella, tomaat en pesto"
     },
@@ -46,7 +43,6 @@
       "prijs": 9.9,
       "eenheid": "per persoon",
       "allergenen": "Bevat lactose, gluten en varkensvlees (charcuterie).",
-      "uitgelicht": true,
       "foto": "assets/img/box-apero.jpg",
       "alt": "Aperoplank met kaas, charcuterie, fruit en dips"
     },
@@ -58,7 +54,6 @@
       "prijs": 2.6,
       "eenheid": "per stuk",
       "allergenen": "Kan sporen bevatten van gluten, ei, lactose en schaaldieren.",
-      "uitgelicht": false,
       "foto": "assets/img/box-apero.jpg",
       "alt": "Warme en koude hapjes voor apero"
     }

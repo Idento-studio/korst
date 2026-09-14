@@ -25,7 +25,7 @@
     '*[_type == "product" && actief == true]',
     '| order(categorie asc, volgorde asc, titel asc){',
     '"id": _id, titel, categorie, beschrijving, prijs, eenheid,',
-    'allergenen, uitgelicht, "foto": foto.asset->url, "alt": foto.alt',
+    'allergenen, "foto": foto.asset->url, "alt": foto.alt',
     '}'
   ].join(' ');
 
@@ -86,39 +86,6 @@
     return { bedrag: bedrag, eenheid: p.eenheid || 'per persoon' };
   }
 
-  /* — Homepage: de uitgelichte boxen —
-     De drie kaarten staan al in de HTML, zodat de pagina ook zonder JS en
-     zonder Sanity klopt. Zijn er uitgelichte producten, dan vervangen we ze. */
-  function vulHomepage(producten) {
-    var grid = document.querySelector('[data-boxen]');
-    if (!grid) return;
-    var uitgelicht = producten.filter(function (p) { return p.uitgelicht; }).slice(0, 3);
-    if (!uitgelicht.length) return;
-
-    grid.innerHTML = uitgelicht.map(function (p, i) {
-      var prijs = prijsTekst(p);
-      var cat = CATEGORIEEN.filter(function (c) { return c.waarde === p.categorie; })[0];
-      var stempel = cat
-        ? basis + 'assets/img/merk/stempel-' + (i === 1 ? cat.waarde + '-licht' : cat.waarde) + '.svg'
-        : '';
-      var feature = i === 1 ? ' box-card-feature' : '';
-      var knop = i === 1 ? ' btn-scallop-flour' : '';
-      return '' +
-        '<article class="box-card' + feature + '">' +
-          (stempel ? '<img class="box-card-stamp" src="' + stempel + '" alt="" width="104" height="104" loading="lazy">' : '') +
-          '<div class="box-card-photo">' +
-            '<img src="' + fotoUrl(p.foto, 760) + '" alt="' + tekst(p.alt || p.titel) + '" width="760" height="475" loading="lazy">' +
-          '</div>' +
-          '<div class="box-card-body">' +
-            '<h3>' + tekst(p.titel) + '</h3>' +
-            '<p>' + tekst(p.beschrijving) + '</p>' +
-            '<p class="prijs">vanaf ' + prijs.bedrag + ' <small>' + tekst(prijs.eenheid) + '</small></p>' +
-            '<p><a href="' + basis + 'bestellen/" class="btn btn-primary btn-scallop btn-scallop-sm' + knop + '">Kies ' + tekst(cat ? cat.label.toLowerCase() : 'deze box') + '</a></p>' +
-          '</div>' +
-        '</article>';
-    }).join('');
-  }
-
   function tekst(s) {
     return String(s == null ? '' : s)
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -132,6 +99,4 @@
   window.KORST.prijsTekst = prijsTekst;
   window.KORST.tekst = tekst;
   window.KORST.producten = laad();
-
-  window.KORST.producten.then(vulHomepage);
 })();

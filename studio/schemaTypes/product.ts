@@ -117,14 +117,6 @@ export const product = defineType({
       initialValue: true,
     }),
     defineField({
-      name: 'uitgelicht',
-      title: 'Tonen op de homepage',
-      type: 'boolean',
-      group: 'zichtbaarheid',
-      description: 'De homepage toont drie uitgelichte producten, bij voorkeur één per categorie.',
-      initialValue: false,
-    }),
-    defineField({
       name: 'volgorde',
       title: 'Volgorde',
       type: 'number',

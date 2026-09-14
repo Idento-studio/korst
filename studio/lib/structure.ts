@@ -33,17 +33,6 @@ export const structure: StructureResolver = (S) => {
       S.divider(),
 
       S.listItem()
-        .title('Op de homepage')
-        .id('uitgelicht')
-        .child(
-          S.documentList()
-            .title('Uitgelicht op de homepage')
-            .schemaType('product')
-            .filter('_type == "product" && uitgelicht == true')
-            .defaultOrdering([{field: 'categorie', direction: 'asc'}]),
-        ),
-
-      S.listItem()
         .title('Niet op de site')
         .id('inactief')
         .child(

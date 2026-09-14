@@ -1,7 +1,7 @@
 # KORST Studio — productbeheer
 
 De beheeromgeving waarin KORST haar broodjes en boxen onderhoudt. Wat hier gepubliceerd
-wordt, verschijnt op de homepage en in de bestelbon.
+wordt, verschijnt in de bestelbon op korst.be.
 
 Alles wat zonder account kan, is al gebouwd: het schema, de indeling van de zijbalk,
 de KORST-kleuren en het logo. Hieronder staat wat jij nog moet doen.
@@ -32,7 +32,7 @@ terug op [sanity.io/manage](https://sanity.io/manage).
 npm run dev               # draait op http://localhost:3333
 ```
 
-Je zou meteen de zijbalk moeten zien met Ontbijt, Lunch, Apero, Op de homepage,
+Je zou meteen de zijbalk moeten zien met Ontbijt, Lunch, Apero,
 Niet op de site, Alles samen en Instellingen.
 
 ### 3. Startproducten invullen
@@ -82,7 +82,6 @@ De plusknop binnen een categorie maakt meteen een product in die categorie aan.
 | Onderdeel | Waarvoor |
 |---|---|
 | **Ontbijt / Lunch / Apero** | De producten per moment, in de volgorde waarin ze op de site staan |
-| **Op de homepage** | De producten met *Tonen op de homepage* aan — bij voorkeur drie, één per categorie |
 | **Niet op de site** | Alles wat tijdelijk uitgeschakeld staat. Handig voor seizoensbroodjes |
 | **Alles samen** | Het volledige overzicht |
 | **Instellingen** | Telefoonnummer, e-mail, leveringsregio, minimum personen en het besteluur |
@@ -111,7 +110,6 @@ const QUERY = `*[_type == "product" && actief == true] | order(categorie asc, vo
   prijs,
   eenheid,
   allergenen,
-  uitgelicht,
   "foto": foto.asset->url,
   "alt": foto.alt
 }`
