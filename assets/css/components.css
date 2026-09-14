@@ -444,28 +444,30 @@
 .patroon-flour { background-image: url("../img/merk/patroon-flour.svg"); opacity: 0.08; }
 
 /* — Lopende band —
-   .marquee-clip snijdt op een vaste, niet-geroteerde hoogte af, terwijl
-   .marquee (band én tekst) wél roteert. Daardoor drift de tekstbaseline aan
-   de randen van het scherm weg van het midden — hoe breder het scherm, hoe
-   groter die drift (evenredig met de hoek). padding-block heeft daarom een
-   vw-component: op brede schermen wordt de band vanzelf dik genoeg om die
-   drift op te vangen, zodat de tekst nooit buiten de band uitsteekt.
-   ::before is los van die hoogte nog eens ruim overmaats (vw-eenheden) zodat
-   de rand ook horizontaal altijd zuiver recht afsnijdt, zonder knik. */
-.marquee-clip { overflow: hidden; }
+   Band én tekst draaien samen: één rotate op .marquee, met de kleur als
+   gewone achtergrond. Zo delen vlak en tekst dezelfde as en loopt de tekst
+   per definitie evenwijdig met de randen van de band.
+
+   Let op: een rotatie telt niet mee voor de layouthoogte. Zonder de
+   padding-block hieronder zou overflow: hidden op .marquee-clip de punten
+   van de gekantelde band er weer afsnijden — en dan is de rand opnieuw
+   kaarsrecht. Die 2.2vw schaalt mee met de schermbreedte, want hoe breder
+   het scherm, hoe hoger de uiteinden van een gekantelde band uitkomen.
+   overflow: hidden vangt daarnaast de paar pixels op die de gedraaide band
+   breder is dan het scherm. Wil je hem schuiner of vlakker, draai dan enkel
+   aan de -2deg. */
+.marquee-clip {
+  overflow: hidden;
+  padding-block: 2.2vw;
+}
 .marquee {
   position: relative;
-  color: var(--inverse-text);
-  padding-block: calc(var(--sp-4) + 1.3vw);
-  transform: rotate(-2deg);
   z-index: 5;
-}
-.marquee::before {
-  content: "";
-  position: absolute;
-  inset: -6vw -12vw;
   background: var(--accent);
-  z-index: -1;
+  color: var(--inverse-text);
+  padding-block: var(--sp-4);
+  overflow: hidden;
+  transform: rotate(-2deg);
 }
 .marquee-track { display: flex; width: max-content; animation: marquee 34s linear infinite; }
 .marquee-track span {
