@@ -444,28 +444,27 @@
 .patroon-flour { background-image: url("../img/merk/patroon-flour.svg"); opacity: 0.08; }
 
 /* — Lopende band —
-   .marquee-clip snijdt op een vaste, niet-geroteerde hoogte af, terwijl
-   .marquee (band én tekst) wél roteert. Daardoor drift de tekstbaseline aan
-   de randen van het scherm weg van het midden — hoe breder het scherm, hoe
-   groter die drift (evenredig met de hoek). padding-block heeft daarom een
-   vw-component: op brede schermen wordt de band vanzelf dik genoeg om die
-   drift op te vangen, zodat de tekst nooit buiten de band uitsteekt.
-   ::before is los van die hoogte nog eens ruim overmaats (vw-eenheden) zodat
-   de rand ook horizontaal altijd zuiver recht afsnijdt, zonder knik. */
+   Band én tekst draaien samen: één rotate op .marquee, zodat de tekst
+   altijd evenwijdig loopt met de randen van de band. Twee dingen die een
+   exact schermbrede, geroteerde band stuk maken en die dit moet opvangen:
+   1) de hoekpunten roteren net bínnen de rand van het scherm, wat een knik
+      in de diagonaal geeft — .marquee is daarom breder dan .marquee-clip
+      (width/margin-inline in vw), zodat de hoeken altijd buiten beeld
+      vallen; 2) de tekstbaseline drift aan de randen weg van het midden
+      (evenredig met breedte × hoek) — padding-block heeft een vw-component
+      zodat de band op elke schermbreedte dik genoeg blijft om dat op te
+      vangen. */
 .marquee-clip { overflow: hidden; }
 .marquee {
   position: relative;
-  color: var(--inverse-text);
-  padding-block: calc(var(--sp-4) + 1.3vw);
-  transform: rotate(-2deg);
   z-index: 5;
-}
-.marquee::before {
-  content: "";
-  position: absolute;
-  inset: -6vw -12vw;
   background: var(--accent);
-  z-index: -1;
+  color: var(--inverse-text);
+  width: 120vw;
+  margin-inline: -10vw;
+  padding-block: calc(var(--sp-4) + 1.3vw);
+  overflow: hidden;
+  transform: rotate(-2deg);
 }
 .marquee-track { display: flex; width: max-content; animation: marquee 34s linear infinite; }
 .marquee-track span {
