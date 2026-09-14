@@ -455,13 +455,13 @@
   position: relative;
   color: var(--inverse-text);
   padding-block: var(--sp-4);
-  transform: rotate(-1.1deg);
+  transform: rotate(-3deg);
   z-index: 5;
 }
 .marquee::before {
   content: "";
   position: absolute;
-  inset: -3vw -10vw;
+  inset: -6vw -12vw;
   background: var(--accent);
   z-index: -1;
 }
