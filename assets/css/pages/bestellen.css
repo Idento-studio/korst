@@ -311,6 +311,7 @@
 /* — Bevestiging — */
 .bevestiging { text-align: left; display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-4); }
 .bevestiging img { width: 110px; height: auto; }
+.bevestiging #bevestigingBestelling { align-self: stretch; }
 .referentie { font-size: 0.875rem; color: var(--text-muted); font-weight: 600; }
 
 /* — De meelopende bestelbon — */

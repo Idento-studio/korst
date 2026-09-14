@@ -257,14 +257,12 @@
   });
 
   /* ── Stap 3: overzicht ── */
-  function bouwOverzicht() {
+  function bestellingBlok(metBewerkKnop) {
     var lijst = gekozen();
-    var g = function (id) { return veld(id) || '—'; };
-
-    var bestelling =
-      '<div class="overzicht-blok">' +
+    return '<div class="overzicht-blok">' +
         '<div class="overzicht-kop"><h3>Bestelling — ' + totaalAantal() + ' box(en)</h3>' +
-        '<button type="button" class="bewerk" data-spring="1">bewerken</button></div>' +
+        (metBewerkKnop ? '<button type="button" class="bewerk" data-spring="1">bewerken</button>' : '') +
+        '</div>' +
         (lijst.length
           ? lijst.map(function (p) {
               return '<p class="overzicht-regel"><span>' + K.tekst(p.titel) + '</span>' +
@@ -274,6 +272,11 @@
         '<p class="overzicht-regel" style="border-top:1px dashed var(--border);margin-top:8px;padding-top:8px">' +
           '<strong>Richttotaal</strong><strong class="n">' + bedrag(totaalPrijs()) + '</strong></p>' +
       '</div>';
+  }
+
+  function bouwOverzicht() {
+    var bestelling = bestellingBlok(true);
+    var g = function (id) { return veld(id) || '—'; };
 
     var gegevens =
       '<div class="overzicht-blok">' +
@@ -332,6 +335,9 @@
 
   function toonBevestiging(ref) {
     document.getElementById('referentie').textContent = ref;
+    document.getElementById('bevestigingBestelling').innerHTML = bestellingBlok(false);
+    document.getElementById('bevestigingMail').textContent =
+      'Je krijgt zo meteen ook een bevestiging per mail op ' + veld('email') + '.';
     [].forEach.call(document.querySelectorAll('.stap[data-stap]'), function (s) { s.hidden = true; });
     document.getElementById('bevestiging').hidden = false;
     window.scrollTo({ top: 0, behavior: 'smooth' });

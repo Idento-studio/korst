@@ -174,13 +174,10 @@ footer {
 .footer-inner strong { color: var(--inverse-text); font-family: var(--font-display); font-weight: 600; }
 
 /* — Uitgebreide footer (homepage) —
-   padding-bottom is ruimer dan padding-top: de sticky bestelbalk (position:
-   fixed, bottom:0) blijft op deze pagina de hele tijd zichtbaar, dus
-   onderaan de footer moet extra ruimte zijn zodat die balk niet over de
-   laatste regel valt. Andere pagina's hebben geen sticky-balk en gebruiken
-   de compacte .footer-inner hierboven, dus deze regel is bewust beperkt tot
-   footers die de .footer-grid bevatten. */
-footer:has(.footer-grid) { padding-top: var(--sp-7); padding-bottom: calc(var(--sp-7) + 4.5rem); }
+   Meer kolommen, dus wat meer ademruimte dan de compacte .footer-inner
+   hierboven. Andere pagina's gebruiken die compacte footer, dus deze regel
+   is bewust beperkt tot footers die de .footer-grid bevatten. */
+footer:has(.footer-grid) { padding-block: var(--sp-7); }
 .footer-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr;

@@ -276,32 +276,6 @@
   color: rgba(255, 250, 243, 0.8);
 }
 
-/* — Sticky bestelbalk (verschijnt voorbij de hero, via site.js) — */
-.sticky-bar {
-  position: fixed;
-  left: 0; right: 0; bottom: 0;
-  z-index: 55;
-  background: var(--inverse-bg-strong);
-  color: var(--inverse-text);
-  transform: translateY(100%);
-  transition: transform 0.5s var(--ease);
-}
-.sticky-bar.is-visible { transform: translateY(0); }
-.sticky-bar-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-4);
-  padding: 0.85rem var(--sp-6);
-}
-.sticky-bar-msg { display: flex; align-items: center; gap: var(--sp-3); font-size: var(--fs-small); }
-.sticky-bar-msg img { width: 30px; height: auto; flex-shrink: 0; }
-.sticky-bar-msg b { color: var(--accent-inverse); }
-@media (max-width: 560px) {
-  .sticky-bar-msg span.long { display: none; }
-  .sticky-bar-inner { padding-inline: var(--sp-5); }
-}
-
 /* — Nudge: duwtje na het aanbod, wegklikbaar — */
 .nudge {
   position: fixed;
@@ -339,5 +313,5 @@
 /* — Motion policy — */
 @media (prefers-reduced-motion: reduce) {
   .hero-stamp, .scroll-hint i { animation: none; }
-  .sticky-bar, .nudge { transition: none; }
+  .nudge { transition: none; }
 }

@@ -53,7 +53,6 @@
   var heroEl = document.getElementById('hero');
   var heroPhoto = document.getElementById('heroPhoto');
   var heroImg = heroPhoto ? heroPhoto.querySelector('img') : null;
-  var stickyBar = document.getElementById('stickyBar');
   // Referentiepunt voor de nudge: die schuift binnen zodra de bezoeker
     // voorbij deze sectie is. Hernoem je #aanbod in de HTML, pas dit
     // dan mee aan.
@@ -74,7 +73,6 @@
 
       if (heroEl) {
         var heroBottom = heroEl.offsetTop + heroEl.offsetHeight;
-        if (stickyBar) stickyBar.classList.toggle('is-visible', scrollTop > heroBottom - 120);
 
         if (!reducedMotion && heroImg && scrollTop < heroBottom) {
           var shift = Math.min(scrollTop * 0.08, 28);
