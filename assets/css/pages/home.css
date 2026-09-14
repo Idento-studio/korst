@@ -103,12 +103,16 @@
   z-index: 4;
   background: var(--flour-100);
   border-radius: var(--radius-sm);
-  padding: 0.8rem 1.25rem 0.7rem;
+  padding: 1.15rem 1.5rem 1rem;
   transform: rotate(3deg);
   box-shadow: 0 16px 30px -14px rgba(102, 26, 26, 0.6);
   text-align: center;
 }
-.hero-label svg { width: clamp(86px, 8vw, 118px); color: var(--accent); margin: 0 auto 5px; }
+/* De "svg"-selector hieronder gold voor het oude inline logo; sinds het
+   logo een <img> is (display:block door de globale reset in brand.css)
+   moest die expliciet gecenterd worden, anders volgt hij niet langer
+   text-align van de kaart en staat hij links i.p.v. boven de tagline. */
+.hero-label img { display: block; width: clamp(90px, 8.5vw, 128px); height: auto; margin: 0 auto 6px; }
 .hero-label span {
   display: block;
   font-family: var(--font-display);
